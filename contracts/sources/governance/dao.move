@@ -466,7 +466,7 @@ module suitears::dao {
   } 
 
   public fun update_dao_config<DaoWitness: drop, CoinType>(
-    dao: &mut Dao<DaoWitness, CoinType>,
+    dao: &mut Dao<DaoWitness>,
     quest: AtomicQuest<DaoQuest<DaoWitness>, Config>
   ) {
     // @dev We can finish a quest instantly that has no tasks
@@ -481,7 +481,7 @@ module suitears::dao {
     assert!(100 * 1_000_000_000 >= dao.voting_quorum_rate && dao.voting_quorum_rate != 0, EInvalidQuorumRate);
 
     emit(
-      UpdateDao<DaoWitness, CoinType> {
+      UpdateDao<DaoWitness> {
         dao_id: object::id(dao),
         voting_delay: dao.voting_delay,
         voting_period: dao.voting_period,
